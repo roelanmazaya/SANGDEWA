@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) Bakulapp.com 2020
+  ~ Dev : Moh. Lukman Sholeh
+  -->
+
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:anim/linear_interpolator">
+    <alpha
+        android:duration="200"
+        android:fromAlpha="1.0"
+        android:toAlpha="0.1" >
+    </alpha>
+</set>

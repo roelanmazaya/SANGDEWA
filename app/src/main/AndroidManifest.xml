@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.sangdewa">
+
+
+<!--    <uses-feature-->
+<!--        android:glEsVersion="0x00020000"-->
+<!--        android:required="true" />-->
+
+
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <application
+        android:name="com.example.sangdewa.config.AppControler"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_sangdewa"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_sangdewa"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:allowBackup,icon,theme,label">
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/icangkutsampah" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel"
+            android:value="@mipmap/icangkutsampah" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAPLczFiFemwMT9w56uprSg-Tn2lxFj-BA" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+
+        <activity
+            android:parentActivityName="com.example.sangdewa.home.Home"
+            android:name="com.example.sangdewa.simpankepetugas.SimpanKePetugas"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
+
+        <activity android:name="com.example.sangdewa.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name="com.example.sangdewa.Daftar"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+
+
+
+        <activity
+            android:name="com.example.sangdewa.Login"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name="com.example.sangdewa.home.Home"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name="com.example.sangdewa.petugas.HomePetugas"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:parentActivityName="com.example.sangdewa.home.Home"
+            android:name="com.example.sangdewa.histori.Histori"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:parentActivityName="com.example.sangdewa.histori.Histori"
+            android:name="com.example.sangdewa.detailtransaksi.DetailTransaksi"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:parentActivityName="com.example.sangdewa.home.Home"
+            android:name="com.example.sangdewa.cairkansaldo.CairkanSaldo"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:parentActivityName="com.example.sangdewa.home.Home"
+            android:name="com.example.sangdewa.directionkurir.Direction"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:parentActivityName="com.example.sangdewa.home.Home"
+            android:name="com.example.sangdewa.profil.Profil"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:parentActivityName="com.example.sangdewa.home.Home"
+            android:name="com.example.sangdewa.notif.Notif"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:parentActivityName="com.example.sangdewa.home.Home"
+            android:name="com.example.sangdewa.petugas.PetaPetugas"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:parentActivityName="com.example.sangdewa.home.Home"
+            android:name="com.example.sangdewa.listpetugas.ListPetugas"
+            android:theme="@style/AppTheme.NoActionBar" />
+    </application>
+
+</manifest>

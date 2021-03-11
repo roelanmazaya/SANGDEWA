@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) Universital Muhammadiyah Jember
+  ~ Dev : Lukman ( Bakulapp.com)
+  -->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <solid android:color="@color/colorWhite" />
+
+    <gradient
+        android:angle="45"
+        android:endColor="@color/colorWhite"
+        android:startColor="@color/colorWhite" />
+
+    <corners
+        android:topLeftRadius="70dp"
+        android:topRightRadius="70dp" />
+
+    <!--     <corners android:bottomRightRadius="70dp"-->
+    <!--        android:bottomLeftRadius="70dp" />-->
+
+
+</shape>

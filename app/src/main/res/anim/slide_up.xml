@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?> <!--
+  ~ Copyright (c) Bakulapp.com 2020
+  ~ Dev : Moh. Lukman Sholeh
+  -->
+
+<set xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <translate
+        android:duration="@android:integer/config_mediumAnimTime"
+        android:fromYDelta="100%"
+        android:interpolator="@android:anim/accelerate_interpolator"
+        android:toXDelta="0" />
+
+</set>
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<set xmlns:android="http://schemas.android.com/apk/res/android">-->
+<!--    <scale-->
+<!--        android:interpolator="@android:anim/linear_interpolator"-->
+<!--        android:fromXScale="0.0"-->
+<!--        android:toXScale="1.0"-->
+<!--        android:fromYScale="0.0"-->
+<!--        android:toYScale="1.0"-->
+<!--        android:fillAfter="false"-->
+<!--        android:startOffset="200"-->
+<!--        android:duration="200"-->
+<!--        android:pivotX = "50%"-->
+<!--        android:pivotY = "-90%"-->
+<!--        />-->
+<!--    <translate-->
+<!--        android:fromYDelta="50%"-->
+<!--        android:toYDelta="0"-->
+<!--        android:startOffset="200"-->
+<!--        android:duration="200"-->
+<!--        />-->
+<!--</set>-->

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) Bakulapp.com 2020
+  ~ Dev : Moh. Lukman Sholeh
+  -->
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:textColor="@color/colorWhite">
+
+    <RelativeLayout
+
+        android:textColor="@color/colorWhite"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Header aligned to top -->
+        <RelativeLayout
+            android:textColor="@color/colorWhite"
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:gravity="center">
+
+
+
+
+            <!--            <LinearLayout-->
+            <!--                android:id="@+id/atas"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="70dp"-->
+            <!--                android:background="@color/colorPrimary"-->
+            <!--                android:orientation="horizontal">-->
+            <!--                -->
+            <!--                -->
+            <!--            </LinearLayout>-->
+
+
+            <LinearLayout
+                android:textColor="@color/colorWhite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+                <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/appBarLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/AppTheme.PopupOverlay"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="@color/colorWhite"
+                        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+
+                        <TextView
+                            android:textSize="15sp"
+                            android:fontFamily="@font/poppins"
+                            android:id="@+id/tvTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Notifikasi"
+                            android:textColor="@color/colorPrimaryDark"
+                            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                            android:textStyle="bold" />
+
+                    </androidx.appcompat.widget.Toolbar>
+
+                </com.google.android.material.appbar.AppBarLayout>
+
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+        <!-- Content below header and above footer -->
+        <RelativeLayout
+            android:id="@+id/relativeLayout2"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/header"
+            android:gravity="center">
+
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+
+                android:id="@+id/recyclerviewTemp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp" />
+
+            <ImageView
+                android:layout_marginTop="100dp"
+                android:id="@+id/gambar"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:layout_gravity="center"
+                android:src="@drawable/check_in_icon" />
+            <TextView
+                android:fontFamily="@font/poppins"
+                android:id="@+id/kosong"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:gravity="center"
+                android:text="Data tidak ditemukan...!"
+                android:textStyle="italic"
+                android:layout_alignParentLeft="true" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+
+
+
+
+
+
+

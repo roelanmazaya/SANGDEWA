@@ -1,0 +1,60 @@
+<!--
+   ~ Copyright (c) Indotech 2021
+  ~ Dev : Justin & Anam
+  -->
+
+<resources>
+    <string name="app_name">Sang Dewa</string>
+    <string name="label_loading">Please Wait…</string>
+    <string name="label_interval">Interval: </string>
+    <string name="label_indicator_size">Indicator size: </string>
+    <string name="label_animate_indicators">Animate indicators: </string>
+    <string name="label_hide_indicators">Hide Indicators</string>
+    <string name="label_loop_slides">Loop slides: </string>
+    <array name="page_indicators">
+        <item>Circle</item>
+        <item>Dash</item>
+        <item>Round Square</item>
+        <item>Square</item>
+        <item>Custom</item>
+    </array>
+
+    <string name="subscribe_to_news">Subscribe To News</string>
+    <string name="log_token">Log Token</string>
+
+    <string name="msg_subscribed">Subscribed to news topic</string>
+    <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
+
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <!--
+        This is the name that users will see when interacting with this channel.
+        It should describe the category of notifications that will be sent through this channel
+     -->
+    <string name="default_notification_channel_name" translatable="true">News</string>
+
+    <string name="loading">Please wait Loading…</string>
+    <string name="new_product">New</string>
+    <string name="google_maps_key">AIzaSyAPLczFiFemwMT9w56uprSg-Tn2lxFj-BA</string>
+
+    <string-array name="jk">
+        <item>-Pilih--</item>
+        <item>Laki-Laki</item>
+        <item>Perempuan</item>
+    </string-array>
+
+    <string-array name="pekerjaan">
+        <item>-Pilih--</item>
+        <item>Wiraswasta</item>
+        <item>Pegawai Negeri Sipil</item>
+        <item>Tani</item>
+    </string-array>
+
+    <string-array name="agama">
+        <item>-Pilih--</item>
+        <item>Islam</item>
+        <item>Kristen</item>
+        <item>Khatolik</item>
+        <item>Budha</item>
+        <item>Hindu</item>
+    </string-array>
+</resources>

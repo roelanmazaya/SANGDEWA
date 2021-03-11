@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) Bakulapp.com 2020
+  ~ Dev : Moh. Lukman Sholeh
+  -->
+
+<translate xmlns:android="http://schemas.android.com/apk/res/android"
+           android:fromYDelta="50%p"
+           android:toYDelta="0%p"
+           android:duration="400"/>

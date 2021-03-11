@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) Bakulapp.com 2020
+  ~ Dev : Moh. Lukman Sholeh
+  -->
+
+<resources>
+    <color name="colorPrimary">#31b057</color>
+    <color name="colorPrimaryDark">#31b057</color>
+    <color name="colorAccent">#31b057</color>
+    <color name="tab_disable">#01447B</color>
+    <color name="tab_enable">#FFFFFF</color>
+    <color name="tab_checked">#F3CD70</color>
+    <color name="tab_unchecked">#FFFFFF</color>
+    <color name="white">#ffffff</color>
+    <color name="blue">#FF9800</color>
+    <color name="colorGray">#EBEBEB</color>
+    <color name="hitamm">#25282b</color>
+    <color name="colorNavvsplashentSelected">#34acf7</color>
+    <color name="colorNavvsplashentUnselected">#919191</color>
+    <color name="promo">#c4c4c4</color>
+
+    <color name="toolbarColor">#eeee</color>
+    <color name="holo_gray">#717171</color>
+    <color name="hitam">#313131</color>
+    <color name="tool">#ededed</color>
+
+    <color name="bg_light">#fafafa</color>
+    <color name="bottomtab_item_resting">#64101010</color>
+    <color name="bottomtab_item_disabled">#6e000000</color>
+    <color name="bottomtab_0">#448AFF</color>
+    <color name="bottomtab_1">#EA5C46</color>
+    <color name="bottomtab_2">#33b3cc</color>
+    <color name="colorPrimaryNight">#3F51B5</color>
+    <color name="colorPrimaryDarkNight">#303F9F</color>
+    <color name="colorvsplashentNight">#FFC107</color>
+    <color name="bg_dark">#263238</color>
+    <color name="divider_light">#0c000000</color>
+    <color name="bacabelum">#fdf8e1</color>
+    <color name="sudahbaca">#ffffff</color>
+    <color name="putih">#ffffff</color>
+    <color name="df_transparent_black_background">#80000000</color>
+    <color name="whiteCardColor">#fff</color>
+    <color name="whiteTextColor">#fff</color>
+    <color name="blackTextColor">#000</color>
+    <color name="colorvsplashent">#000</color>
+    <color name="colortext">#100b20</color>
+    <color name="colorhint">#a9aaac</color>
+    <color name="colorBlack">#000</color>
+    <color name="view">#87dcdcdc</color>
+    <color name="button_login">#30aafd</color>
+    <color name="color_halaman_utama">#cccccc</color>
+    <color name="color_button1">#5cc5fe</color>
+    <color name="color_button2">#5cd1fc</color>
+    <color name="mata_kuliah">#8e91ee</color>
+    <color name="jadwal_kuliah">#6acffd</color>
+    <color name="absensi_online">#aadc3b</color>
+    <color name="profil_pengajar">#f8ad5c</color>
+    <color name="profil_peserta">#f7cb52</color>
+    <color name="profil_ktk">#f75481</color>
+    <color name="panah_back">#31abfe</color>
+    <color name="colorFalse">#FF0000</color>
+    <color name="colorRed">#ff4e6a</color>
+    <color name="colorText">#808285</color>
+    <color name="colorAbu">#F2F2F2</color>
+    <color name="colorBackground">#f5fafd</color>
+
+    <color name="tab">#31abfe</color>
+    <color name="orange">#EF6C00</color>
+    <color name="dark_orange">#E65100</color>
+    <color name="text_color">#272928</color>
+    <!--<color name="text_color">#292f33</color>-->
+    <color name="black">#000000</color>
+    <color name="light_text">#c3c4c4</color>
+    <color name="medium_text">#7e7e7e</color>
+
+    <!--<color name="medium_text">#898989</color>-->
+    <color name="light_grey">#ECEFF1</color>
+    <color name="transparent">#80000000</color>
+    <color name="green">#3f7600</color>
+
+    <color name="light_white">#d5d5d5</color>
+    <color name="dull_white">#F5F5F5</color>
+
+    <color name="bottom_bar_text_color">#6b6d7b</color>
+    <color name="red">#B71C1C</color>
+
+    <color name="tab_select_txt">#ad9614</color>
+    <color name="tab_unselect_txt">#000000</color>
+    <color name="bottom_bar">#4c4c4c</color>
+    <color name="dark_white">#efeeec</color>
+    <color name="yellow">#FFC107</color>
+    <color name="light_blue">#d7effe</color>
+    <color name="dark_blue">#28a7fc</color>
+    <color name="selected_tab_color">#0096ff</color>
+    <color name="unselected_tab">#acacac</color>
+    <color name="dark_text">#4d4d4d</color>
+    <color name="background">#dddddd</color>
+    <color name="colorWhite">#fff</color>
+</resources>
