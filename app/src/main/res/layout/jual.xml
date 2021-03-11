@@ -170,7 +170,7 @@
                         <EditText
                             android:id="@+id/nama"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
+                            android:layout_height="35dp"
                             android:layout_marginLeft="23dp"
                             android:layout_marginRight="23dp"
                             android:background="@drawable/rectangle"
@@ -181,57 +181,6 @@
                             android:paddingRight="20dp"
                             android:textSize="11sp"
                             android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins"
-                            android:layout_marginTop="20dp"
-                            android:gravity="center|left"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="20dp"
-                            android:text="   Tempat Lahir"
-                            android:textSize="12sp" />
-
-                        <EditText
-                            android:id="@+id/tempat_lahir"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_marginLeft="23dp"
-                            android:layout_marginRight="23dp"
-                            android:background="@drawable/rectangle"
-                            android:fontFamily="@font/poppins"
-                            android:gravity="center|left"
-                            android:hint=""
-                            android:paddingLeft="10dp"
-                            android:paddingRight="20dp"
-                            android:textSize="11sp"
-                            android:textStyle="bold" />
-
-                        <Button
-                            android:id="@+id/bt_tgl"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:gravity="center|left"
-                            android:layout_marginLeft="20dp"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="20dp"
-                            android:text="Tanggal Lahir"
-                            android:textSize="12sp"/>
-
-                        <TextView
-                            android:id="@+id/tv_tgl"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="23dp"
-                            android:fontFamily="@font/poppins"
-                            android:gravity="center|left"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="20dp"
-                            android:textSize="14sp"
-                            android:textStyle="bold"
-                            android:text=" "/>
 
                         <TextView
                             android:layout_width="match_parent"
@@ -253,7 +202,7 @@
                             android:paddingRight="20dp"
                             android:entries="@array/jk"
                             android:textSize="14sp"
-                            android:textStyle="bold"></Spinner>
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -263,35 +212,13 @@
                             android:gravity="center|left"
                             android:paddingLeft="10dp"
                             android:paddingRight="20dp"
-                            android:text="   Pekerjaan"
-                            android:textSize="12sp" />
-
-                        <Spinner
-                            android:id="@+id/sp_pekerjaan"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center|left"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="20dp"
-                            android:entries="@array/pekerjaan"
-                            android:textSize="14sp"
-                            android:textStyle="bold"></Spinner>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins"
-                            android:layout_marginTop="20dp"
-                            android:gravity="center|left"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="20dp"
-                            android:text="   Alamat"
+                            android:text="   Tempat Lahir"
                             android:textSize="12sp" />
 
                         <EditText
-                            android:id="@+id/alamat_tinggal"
+                            android:id="@+id/tempat_lahir"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
+                            android:layout_height="35dp"
                             android:layout_marginLeft="23dp"
                             android:layout_marginRight="23dp"
                             android:background="@drawable/rectangle"
@@ -311,11 +238,167 @@
                             android:gravity="center|left"
                             android:paddingLeft="10dp"
                             android:paddingRight="20dp"
-                            android:text="   Telp/Email"
+                            android:text="   Tanggal Lahir"
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:editable="false"
+                                android:id="@+id/tgl_lahir"
+                                android:layout_width="0dp"
+                                android:layout_weight="0.9"
+                                android:layout_height="35dp"
+                                android:layout_marginLeft="23dp"
+                                android:layout_marginRight="10dp"
+                                android:background="@drawable/rectangle"
+                                android:fontFamily="@font/poppins"
+                                android:gravity="center|left"
+                                android:hint=""
+                                android:paddingLeft="10dp"
+                                android:paddingRight="20dp"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="23dp"
+                                android:layout_width="0dp"
+                                android:layout_weight="0.1"
+                                android:layout_height="wrap_content">
+
+                                <ImageView
+                                    android:id="@+id/iv_date"
+                                    android:clickable="true"
+                                    android:layout_width="35dp"
+                                    android:layout_height="35dp"
+                                    android:background="@mipmap/ic_tanggal"
+                                    />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <Button
+                            android:visibility="gone"
+                            android:id="@+id/bt_tgl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center|left"
+                            android:layout_marginLeft="20dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:text="Tanggal Lahir"
+                            android:textSize="12sp"/>
+
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/tv_tgl"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="23dp"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:text=" "/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:text="   Telp/Fax/Email"
                             android:textSize="12sp" />
 
                         <EditText
                             android:id="@+id/telp"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="23dp"
+                            android:layout_marginRight="23dp"
+                            android:background="@drawable/rectangle"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="center|left"
+                            android:hint=""
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:text="   Pekerjaan"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/pekerjaan"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="23dp"
+                            android:layout_marginRight="23dp"
+                            android:background="@drawable/rectangle"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="center|left"
+                            android:hint=""
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:text="   Kewarganegaraan"
+                            android:textSize="12sp" />
+
+                        <Spinner
+                            android:id="@+id/sp_kewarganegaraan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:entries="@array/kewarganegaraan"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <Spinner
+                            android:visibility="gone"
+                            android:id="@+id/sp_pekerjaan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:entries="@array/pekerjaan"
+                            android:textSize="14sp"
+                            android:textStyle="bold"></Spinner>
+
+
+                        <EditText
+                            android:visibility="gone"
+                            android:id="@+id/kewarganegaraan"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:layout_marginLeft="23dp"
@@ -359,11 +442,33 @@
                             android:gravity="center|left"
                             android:paddingLeft="10dp"
                             android:paddingRight="20dp"
-                            android:text="   Kewarganegaraan"
+                            android:text="   Pendidikan Terakhir"
+                            android:textSize="12sp" />
+
+                        <Spinner
+                            android:id="@+id/sp_pendidikan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:entries="@array/pendidikan"
+                            android:textSize="14sp"
+                            android:textStyle="bold"></Spinner>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:text="   Alamat"
                             android:textSize="12sp" />
 
                         <EditText
-                            android:id="@+id/kewarganegaraan"
+                            android:id="@+id/alamat_tinggal"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:layout_marginLeft="23dp"
@@ -412,7 +517,7 @@
                             android:gravity="center|left"
                             android:paddingLeft="10dp"
                             android:paddingRight="20dp"
-                            android:text="   Alamat Kejadian"
+                            android:text="   Tempat Kejadian"
                             android:textSize="12sp" />
 
                         <TextView
@@ -424,8 +529,86 @@
                             android:gravity="center|left"
                             android:paddingLeft="10dp"
                             android:paddingRight="20dp"
-                            android:text="   Alamat Kejadian"
+                            android:text="   Tempat Kejadian"
                             android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:text="   Kelurahan/Desa"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/kelurahan"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="23dp"
+                            android:layout_marginRight="23dp"
+                            android:background="@drawable/rectangle"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="center|left"
+                            android:hint=""
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:text="   Kecamatan"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/kecamatan"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="23dp"
+                            android:layout_marginRight="23dp"
+                            android:background="@drawable/rectangle"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="center|left"
+                            android:hint=""
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:text="   Kabupaten"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/kabupaten"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="23dp"
+                            android:layout_marginRight="23dp"
+                            android:background="@drawable/rectangle"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="center|left"
+                            android:hint=""
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:textSize="11sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -514,32 +697,31 @@
                             android:gravity="center|left"
                             android:paddingLeft="10dp"
                             android:paddingRight="20dp"
-                            android:text="Bagaimana Terjadi:"
+                            android:text="    Bagaimana Terjadi:"
                             android:textSize="12sp" />
+
+
+                        <EditText
+                            android:id="@+id/catatan"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="23dp"
+                            android:layout_marginRight="23dp"
+                            android:background="@drawable/rectangle"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="center|left"
+                            android:hint=""
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
 
                         <LinearLayout
 
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"
                             android:orientation="vertical">
-
-
-                            <EditText
-                                android:id="@+id/catatan"
-                                android:layout_width="match_parent"
-                                android:layout_height="50dp"
-                                android:layout_marginLeft="23dp"
-                                android:layout_marginRight="23dp"
-                                android:background="@drawable/rectangle"
-                                android:fontFamily="@font/poppins"
-                                android:gravity="center|left"
-                                android:hint=""
-                                android:paddingLeft="10dp"
-                                android:paddingRight="20dp"
-                                android:textSize="11sp"
-                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="match_parent"

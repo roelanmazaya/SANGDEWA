@@ -78,7 +78,6 @@ public class ListPetugas extends AppCompatActivity {
     }
 
     private void List() {
-
         JsonArrayRequest reqData = new JsonArrayRequest(Request.Method.GET,
                 Server.URL + "web_service/listpetugas.php", null,
                 new Response.Listener<JSONArray>() {

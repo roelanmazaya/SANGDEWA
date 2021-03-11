@@ -121,8 +121,6 @@ public class Daftar extends AppCompatActivity implements   View.OnClickListener{
         Simpan();
     }
 
-
-
     private void showfilechoser() {
         final CharSequence[] items = {"Ambil Foto", "Pilih dari Galeri",
                 "Batal"};

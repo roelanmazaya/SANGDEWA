@@ -37,8 +37,8 @@
     <string name="google_maps_key">AIzaSyAPLczFiFemwMT9w56uprSg-Tn2lxFj-BA</string>
 
     <string-array name="jk">
-        <item>-Pilih--</item>
-        <item>Laki-Laki</item>
+        <item>- Pilih -</item>
+        <item>Laki-laki</item>
         <item>Perempuan</item>
     </string-array>
 
@@ -50,11 +50,32 @@
     </string-array>
 
     <string-array name="agama">
-        <item>-Pilih--</item>
+        <item>- Pilih -</item>
         <item>Islam</item>
         <item>Kristen</item>
-        <item>Khatolik</item>
-        <item>Budha</item>
+        <item>Katholik</item>
+        <item>Buddha</item>
         <item>Hindu</item>
+        <item>Konghucu</item>
+    </string-array>
+
+    <string-array name="kewarganegaraan">
+        <item>- Pilih -</item>
+        <item>WNI</item>
+        <item>WNA</item>
+    </string-array>
+
+    <string-array name="pendidikan">
+        <item>- Pilih -</item>
+        <item>SD / MI</item>
+        <item>SMP / MTs</item>
+        <item>SMA / SMK / MA / Sederajat</item>
+        <item>D1</item>
+        <item>D2</item>
+        <item>D3</item>
+        <item>D4</item>
+        <item>S1</item>
+        <item>S2</item>
+        <item>S3</item>
     </string-array>
 </resources>

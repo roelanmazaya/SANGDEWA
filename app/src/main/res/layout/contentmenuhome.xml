@@ -286,7 +286,8 @@
                     android:padding="10dp"
                     app:layout_constraintBottom_toBottomOf="@+id/histori"
                     app:layout_constraintStart_toEndOf="@+id/histori"
-                    app:layout_constraintTop_toTopOf="@+id/histori">
+                    app:layout_constraintTop_toTopOf="@+id/histori"
+                    android:layout_marginLeft="24dp">
 
                     <ImageView
                         android:layout_width="35dp"
@@ -352,7 +353,8 @@
                     android:padding="10dp"
                     app:layout_constraintBottom_toBottomOf="@+id/histori"
                     app:layout_constraintEnd_toStartOf="@+id/histori"
-                    app:layout_constraintTop_toTopOf="@+id/histori">
+                    app:layout_constraintTop_toTopOf="@+id/histori"
+                    android:layout_marginRight="24dp">
 
                     <ImageView
                         android:layout_width="35dp"
@@ -393,7 +395,8 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:gravity="center_horizontal" />
 
 
                 <ImageView
