@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -76,7 +77,6 @@ public class Histori extends AppCompatActivity {
 
 
 
-
         mShimmerViewContainer = findViewById(R.id.shimmer_view_container);
 
         mRecyclerview = (RecyclerView) findViewById(R.id.recyclerviewTemp);
@@ -100,9 +100,12 @@ public class Histori extends AppCompatActivity {
     }
 
     private void Histori() {
-        System.out.println("masyarakat");
+        System.out.println("petugas");
+        String URL = Server.URL_DEV+"android/histori?iduser="+ambiliduser+"&level="+sidlevel;
+//        String URL = Server.URL + "web_service/histori.php?iduser=" + ambiliduser+"&user=1";
+        System.out.println(URL);
         JsonArrayRequest reqData = new JsonArrayRequest(Request.Method.GET,
-                Server.URL + "web_service/histori.php?iduser=" + ambiliduser+"&user=1", null,
+                URL, null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -114,7 +117,7 @@ public class Histori extends AppCompatActivity {
                                 md.setIdtransaksi(data.getString("id"));
                                 md.setNama(data.getString("nama"));
                                 md.setTanggal(data.getString("tanggal"));
-                                md.setStatus(data.getString("status"));
+                                md.setStatus(data.getString("alamat"));
 
                                 mItems.add(md);
 
@@ -150,10 +153,13 @@ public class Histori extends AppCompatActivity {
 
 
     private void Histori2() {
+        System.out.println("pimpinan");
         System.out.println("petugas");
-        System.out.println(Server.URL + "web_service/histori.php?idpetugas="+ ambiliduser+"&user=2");
+        String URL = Server.URL_DEV+"android/histori?iduser="+ambiliduser+"&level="+sidlevel;
+//        String URL = Server.URL + "web_service/histori.php?iduser=" + ambiliduser+"&user=1";
+        System.out.println(URL);
         JsonArrayRequest reqData = new JsonArrayRequest(Request.Method.GET,
-                Server.URL + "web_service/histori.php?idpetugas="+ ambiliduser+"&user=2", null,
+                URL, null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -165,7 +171,7 @@ public class Histori extends AppCompatActivity {
                                 md.setIdtransaksi(data.getString("id"));
                                 md.setNama(data.getString("nama"));
                                 md.setTanggal(data.getString("tanggal"));
-                                md.setStatus(data.getString("status"));
+                                md.setStatus(data.getString("alamat"));
 
                                 mItems.add(md);
 

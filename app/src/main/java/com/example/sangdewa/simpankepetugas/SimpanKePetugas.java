@@ -8,6 +8,8 @@ package com.example.sangdewa.simpankepetugas;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -26,10 +28,14 @@ import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,12 +48,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.sangdewa.Login;
 import com.example.sangdewa.R;
 import com.example.sangdewa.config.AppControler;
 import com.example.sangdewa.config.ModelData;
 import com.example.sangdewa.config.Server;
+import com.example.sangdewa.simpankepetugas.adapter.AdapterKecamatan;
+import com.example.sangdewa.simpankepetugas.adapter.AdapterKelurahan;
+import com.example.sangdewa.simpankepetugas.item.ItemKecamatan;
+import com.example.sangdewa.simpankepetugas.item.ItemKelurahan;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
@@ -65,6 +76,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -72,7 +84,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -143,8 +158,17 @@ public class SimpanKePetugas extends AppCompatActivity implements View.OnClickLi
 
     String idpetugas;
 
+    Spinner spJK, spKewarganegaraan, spAgama, spPendidikan, spKecamatan, spKelurahan;
+    String sJK, sKewarganegaraan, sAgama, sPendidikan, sKecamatan, sKelurahan;
 
+    EditText etNama, etTempatLahir, etTglLahir, etTelp, etPekerjaan, etAlamat, etWaktuKejadian,
+    etKel, etKec, etKab, etApaYgTerjadi, etKorban, etTerlapor, etBagaimanaTerjadi, etDilaporkan;
 
+    ImageView ivTgl;
+
+    private DatePicker datePicker;
+    private Calendar calendar;
+    private int year, month, day;
 
     private int PICK_IMAGE_REQUEST = 1;
     private int REQUEST_TAKE_PHOTO = 2;
@@ -154,6 +178,12 @@ public class SimpanKePetugas extends AppCompatActivity implements View.OnClickLi
     TextView namaimage;
 
     Button pilihfoto;
+
+    ArrayAdapter<ItemKecamatan> adapterKec;
+    ArrayAdapter<ItemKelurahan> adapterKel;
+    ArrayList<ItemKecamatan> kecArrayList = new ArrayList<>();
+    ArrayList<ItemKelurahan> kelArrayList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -178,11 +208,124 @@ public class SimpanKePetugas extends AppCompatActivity implements View.OnClickLi
         subtotal =  findViewById(R.id.subtotal);
         pesan =  findViewById(R.id.pesan);
         alamat =  findViewById(R.id.alamat);
-        catatan =  findViewById(R.id.catatan);
+//        catatan =  findViewById(R.id.catatan);
 
         tbldetail=findViewById(R.id.tbldetail);
         tblpesan=findViewById(R.id.tblpesan);
         belum= findViewById(R.id.belum);
+
+        spAgama = findViewById(R.id.sp_agama);
+        spJK = findViewById(R.id.sp_jk);
+        spKewarganegaraan = findViewById(R.id.sp_kewarganegaraan);
+        spPendidikan = findViewById(R.id.sp_pendidikan);
+        spKecamatan = findViewById(R.id.sp_kecamatan);
+        spKelurahan = findViewById(R.id.sp_kelurahan);
+
+        etNama = findViewById(R.id.nama);
+        etTempatLahir = findViewById(R.id.tempat_lahir);
+        etTglLahir = findViewById(R.id.tgl_lahir);
+        etTelp = findViewById(R.id.telp);
+        etPekerjaan = findViewById(R.id.pekerjaan);
+        etAlamat = findViewById(R.id.alamat_tinggal);
+        etWaktuKejadian = findViewById(R.id.waktu_kejadian);
+        etKel = findViewById(R.id.kelurahan);
+        etKec = findViewById(R.id.kecamatan);
+        etKab = findViewById(R.id.kabupaten);
+        etApaYgTerjadi = findViewById(R.id.apa_terjadi);
+        etKorban = findViewById(R.id.korban);
+        etTerlapor = findViewById(R.id.terlapor);
+        etBagaimanaTerjadi = findViewById(R.id.bagaimana_terjadi);
+        etDilaporkan = findViewById(R.id.dilaporkan);
+
+        ivTgl = findViewById(R.id.iv_date);
+
+        calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+        showDate(year, month+1, day);
+
+        spJK.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                sJK = spJK.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spPendidikan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                sPendidikan = spPendidikan.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spAgama.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                sAgama = spAgama.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spKewarganegaraan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                sKewarganegaraan = spKewarganegaraan.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spKecamatan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ItemKecamatan itemKecamatan = (ItemKecamatan) parent.getSelectedItem();
+
+                sKecamatan = itemKecamatan.getId_kec();
+                System.out.println("Kecamatan pilih : "+sKecamatan);
+                if(!sKecamatan.equalsIgnoreCase("0")){
+                    getKel(sKecamatan);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spKelurahan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ItemKelurahan itemKelurahan = (ItemKelurahan) parent.getSelectedItem();
+
+                sKelurahan= itemKelurahan.getId_kel();
+                System.out.println("Kelurahan pilih : "+sKelurahan);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
         pesan.setOnClickListener(this);
@@ -216,7 +359,105 @@ public class SimpanKePetugas extends AppCompatActivity implements View.OnClickLi
         restoreValuesFromBundle(savedInstanceState);
         startLocationUpdates();
 
+        getKec();
 
+
+    }
+
+    private void getKec() {
+        kecArrayList.clear();
+        String URL = Server.URL_DEV+"android/getKec";
+        System.out.println(URL);
+        JsonArrayRequest reqData = new JsonArrayRequest(Request.Method.GET,
+                URL, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        kecArrayList.add(new ItemKecamatan("0","- Pilih -"));
+                        System.out.println(response);
+                        for (int i = 0; i < response.length(); i++) {
+                            try {
+                                JSONObject data = response.getJSONObject(i);
+                                System.out.println(data.getString("nama_kec"));
+                                kecArrayList.add(new ItemKecamatan(data.getString("id"),data.getString("nama_kec")));
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+//                                System.out.println("data kosong");
+
+                            }
+                        }
+                        System.out.println(kecArrayList.size());
+                        adapterKec = new ArrayAdapter<ItemKecamatan>(SimpanKePetugas.this, R.layout.spinner_item, kecArrayList);
+
+                        spKecamatan.setAdapter(adapterKec);
+                        mShimmerViewContainer.stopShimmerAnimation();
+                        mShimmerViewContainer.setVisibility(View.GONE);
+//                        p2.setVisibility(View.GONE);
+//                        pd.cancel();
+//                        mShimmerViewContainer.stopShimmerAnimation();
+//                        mShimmerViewContainer.setVisibility(View.GONE);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        mShimmerViewContainer.stopShimmerAnimation();
+                        mShimmerViewContainer.setVisibility(View.GONE);
+//                        p2.setVisibility(View.GONE);
+//                        pd.cancel();
+//                        Toast.makeText(getApplication(), "Ada Kesalahan Mohon Periksa Kembali", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        AppControler.getInstance().addToRequestQueue(reqData);
+    }
+
+    private void getKel(String sKecamatan) {
+        kelArrayList.clear();
+        String URL = Server.URL_DEV+"android/getKel?id_kec="+sKecamatan;
+        JsonArrayRequest reqData = new JsonArrayRequest(Request.Method.GET,
+                URL, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        System.out.println(response);
+                        kelArrayList.add(new ItemKelurahan("0", "0", "- Pilih -"));
+                        for (int i = 0; i < response.length(); i++) {
+                            try {
+                                JSONObject data = response.getJSONObject(i);
+
+                                kelArrayList.add(new ItemKelurahan(data.getString("id"),data.getString("id_kec"),data.getString("nama_kel")));
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+//                                System.out.println("data kosong");
+
+                            }
+                        }
+                        adapterKel = new ArrayAdapter<ItemKelurahan>(SimpanKePetugas.this, R.layout.spinner_item, kelArrayList);
+
+                        spKelurahan.setAdapter(adapterKel);
+                        mShimmerViewContainer.stopShimmerAnimation();
+                        mShimmerViewContainer.setVisibility(View.GONE);
+//                        p2.setVisibility(View.GONE);
+//                        pd.cancel();
+//                        mShimmerViewContainer.stopShimmerAnimation();
+//                        mShimmerViewContainer.setVisibility(View.GONE);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        mShimmerViewContainer.stopShimmerAnimation();
+                        mShimmerViewContainer.setVisibility(View.GONE);
+//                        p2.setVisibility(View.GONE);
+//                        pd.cancel();
+//                        Toast.makeText(getApplication(), "Ada Kesalahan Mohon Periksa Kembali", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        AppControler.getInstance().addToRequestQueue(reqData);
     }
 
     private void showfilechoser() {
@@ -449,20 +690,24 @@ public class SimpanKePetugas extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        if( catatan.getText().toString().length() == 0 ){
-            catatan.setError( "catatan wajib diisi!!!" );
-            Toast.makeText(getApplicationContext(),"Catatan Wajib diisi",Toast.LENGTH_LONG).show();
-        }else{
-            SimpanTransaksi();
-        }
+//        if( catatan.getText().toString().length() == 0 ){
+//            catatan.setError( "catatan wajib diisi!!!" );
+//            Toast.makeText(getApplicationContext(),"Catatan Wajib diisi",Toast.LENGTH_LONG).show();
+//        }else{
+//            Simpan();
+//        }
 
+        Simpan();
 
     }
 
-    private void SimpanTransaksi() {
+    private void Simpan() {
 
+        String URL = Server.URL_DEV+"android/simpan_kriminal";
+//        String URL = Server.URL + "web_service/simpankeranjang.php";
+        System.out.println(URL);
         final ProgressDialog loading = ProgressDialog.show(this, "Simpan Transaksi...", " Mohon Tunggu...", false, false);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Server.URL + "web_service/simpankeranjang.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -504,13 +749,31 @@ public class SimpanKePetugas extends AppCompatActivity implements View.OnClickLi
                 //membuat parameters
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("iduser", ambiliduser.trim());
-                params.put("catatan", catatan.getText().toString().trim());
-                params.put("alamat", alamat.getText().toString().trim());
-                params.put("idpetugas", idpetugas.trim());
-                params.put("namaimage", namaimage.getText().toString());
-                params.put("image", getStringImage(bitmap));
+                params.put("nama", etNama.getText().toString().trim());
+                params.put("jk", sJK);
+                params.put("tempat_lahir", etTempatLahir.getText().toString());
+                params.put("namafoto", namaimage.getText().toString());
+                params.put("foto", getStringImage(bitmap));
                 params.put("lat", ambillat);
                 params.put("long", ambillong);
+
+                params.put("tgl_lahir", etTglLahir.getText().toString());
+                params.put("telp", etTelp.getText().toString());
+                params.put("pekerjaan", etPekerjaan.getText().toString());
+                params.put("kewarganegaraan", sKewarganegaraan);
+                params.put("agama", sAgama);
+                params.put("pendidikan", sPendidikan);
+                params.put("alamat", etAlamat.getText().toString());
+                params.put("waktu_kejadian", etWaktuKejadian.getText().toString());
+                params.put("tempat_kejadian", alamat.getText().toString());
+                params.put("kel", sKelurahan);
+                params.put("kec", sKecamatan);
+                params.put("kab", etKab.getText().toString());
+                params.put("apa_terjadi", etApaYgTerjadi.getText().toString());
+                params.put("korban", etKorban.getText().toString());
+                params.put("terlapor", etTerlapor.getText().toString());
+                params.put("bagaimana_terjadi", etBagaimanaTerjadi.getText().toString());
+                params.put("dilaporkan", etDilaporkan.getText().toString());
 
 
                 return params;
@@ -518,6 +781,42 @@ public class SimpanKePetugas extends AppCompatActivity implements View.OnClickLi
         };
 
         AppControler.getInstance().addToRequestQueue(stringRequest, "json");
+    }
+
+    @SuppressWarnings("deprecation")
+    public void setDate(View view) {
+        showDialog(999);
+//        Toast.makeText(getApplicationContext(), "ca",
+//                Toast.LENGTH_SHORT)
+//                .show();
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        // TODO Auto-generated method stub
+        if (id == 999) {
+            return new DatePickerDialog(this,
+                    myDateListener, year, month, day);
+        }
+        return null;
+    }
+
+    private DatePickerDialog.OnDateSetListener myDateListener = new
+            DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker arg0,
+                                      int arg1, int arg2, int arg3) {
+                    // TODO Auto-generated method stub
+                    // arg1 = year
+                    // arg2 = month
+                    // arg3 = day
+                    showDate(arg1, arg2+1, arg3);
+                }
+            };
+
+    private void showDate(int year, int month, int day) {
+        etTglLahir.setText(new StringBuilder().append(day).append("-")
+                .append(month).append("-").append(year));
     }
 
     void getAddress(double lat, double lng) {

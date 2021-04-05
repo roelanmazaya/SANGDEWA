@@ -156,7 +156,7 @@
                                         android:layout_marginTop="1dp"
                                         android:background="@color/putih"
                                         android:fontFamily="@font/poppins"
-                                        android:hint="Nama Depan"
+                                        android:hint="Nama"
                                         android:inputType="text"
                                         android:paddingLeft="20dp"
                                         android:paddingRight="20dp"
@@ -242,7 +242,31 @@
                                         android:textSize="12dp" />
                                 </LinearLayout>
 
+                                <LinearLayout
+                                    android:layout_marginTop="5dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:background="@drawable/border_radius_login"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="10dp">
 
+                                    <EditText
+                                        android:gravity="left|center_horizontal"
+                                        android:id="@+id/nip"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginTop="1dp"
+                                        android:background="@color/putih"
+                                        android:fontFamily="@font/poppins"
+                                        android:hint="NIP"
+                                        android:inputType="number"
+                                        android:paddingLeft="20dp"
+                                        android:paddingRight="20dp"
+                                        android:singleLine="true"
+                                        android:textColor="@color/colorBlack"
+                                        android:textSize="12dp" />
+                                </LinearLayout>
 
                                 <LinearLayout
                                     android:layout_marginTop="5dp"
@@ -262,12 +286,35 @@
                                         android:background="@color/putih"
                                         android:fontFamily="@font/poppins"
                                         android:hint="Telepon"
-                                        android:inputType="text"
+                                        android:inputType="number"
                                         android:paddingLeft="20dp"
                                         android:paddingRight="20dp"
                                         android:singleLine="true"
                                         android:textColor="@color/colorBlack"
                                         android:textSize="12dp" />
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                    android:layout_marginTop="5dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:background="@drawable/border_radius_login"
+                                    android:orientation="horizontal"
+                                    android:paddingLeft="10dp">
+
+                                    <Spinner
+                                        android:id="@+id/spRole"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="left|center_horizontal"
+                                        android:paddingLeft="10dp"
+                                        android:paddingRight="20dp"
+                                        android:textSize="12dp"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_marginTop="1dp"
+                                        android:textColor="@color/colorBlack"
+                                        android:textStyle="bold"></Spinner>
                                 </LinearLayout>
 
 

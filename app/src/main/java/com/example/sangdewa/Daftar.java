@@ -18,6 +18,8 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,11 +32,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.sangdewa.config.AppControler;
 import com.example.sangdewa.config.ModelData;
 import com.example.sangdewa.config.Server;
+import com.example.sangdewa.home.Home;
+import com.example.sangdewa.utilities.ItemRole;
+import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -43,6 +50,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Daftar extends AppCompatActivity implements   View.OnClickListener{
@@ -70,12 +78,16 @@ public class Daftar extends AppCompatActivity implements   View.OnClickListener{
     Button pilihfoto;
     TextView simpan;
 
+    private ArrayList<ItemRole> rolesList;
+    Spinner spRole;
+    String idRole = "0";
 
 
     SharedPreferences idduser;
     String ambiliduser;
 
-    EditText nama,alamat,username,password,telp;
+    EditText nama,alamat,username,password,telp, nip;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +98,7 @@ public class Daftar extends AppCompatActivity implements   View.OnClickListener{
         username=findViewById(R.id.username);
         password=findViewById(R.id.password);
         telp=findViewById(R.id.telepon);
-
+        nip=findViewById(R.id.nip);
 
 
         fotobukti = (ImageView) findViewById(R.id.fotobukti);
@@ -98,6 +110,8 @@ public class Daftar extends AppCompatActivity implements   View.OnClickListener{
         simpan =  findViewById(R.id.simpan);
         simpan.setOnClickListener(this);
 
+        spRole = (Spinner) findViewById(R.id.spRole);
+        rolesList = new ArrayList<ItemRole>();
 
 
         pilihfoto.setOnClickListener(new View.OnClickListener() {
@@ -111,9 +125,82 @@ public class Daftar extends AppCompatActivity implements   View.OnClickListener{
 
         pd = new ProgressDialog(Daftar.this);
 
+        getDataRole();
+
+        spRole.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                idRole = rolesList.get(position).getId_inc();
+//                Toast.makeText(Daftar.this, idRole, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 
+    private void getDataRole() {
+        final String URL = Server.URL_DEV+"android/getRole";
+//        String URL = Server.URL + "web_service/profil.php?iduser="+ambiliduser;
+        System.out.println(URL);
+        JsonArrayRequest reqData = new JsonArrayRequest(Request.Method.GET,
+                URL
+                , null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        ItemRole irx = new ItemRole("0", "Pilih Role");
+                        rolesList.add(irx);
+                        for (int i = 0; i < response.length(); i++) {
+                            try {
 
+                                JSONObject data = response.getJSONObject(i);
+                                ItemRole ir = new ItemRole(data.getString("id_inc"), data.getString("role"));
+                                rolesList.add(ir);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+
+
+                            }
+                        }
+
+                        populateSpinner();
+
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+//                        Toast.makeText(getApplication(), "Ada Kesalahan Mohon Periksa Kembali", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+        AppControler.getInstance().addToRequestQueue(reqData);
+    }
+
+    private void populateSpinner() {
+        List<String> roles = new ArrayList<String>();
+
+        for (int i = 0; i < rolesList.size(); i++) {
+            roles.add(rolesList.get(i).getRole());
+        }
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, roles);
+
+        // Drop down layout style - list view with radio button
+        spinnerAdapter
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spRole.setAdapter(spinnerAdapter);
+    }
 
 
     @Override
@@ -191,14 +278,13 @@ public class Daftar extends AppCompatActivity implements   View.OnClickListener{
         return encodedImage;
     }
 
-
-
-
-
     private void Simpan() {
         //menampilkan progress dialog
+        String URL = Server.URL_DEV+"android/daftar";
+//        String URL = Server.URL + "web_service/daftar.php";
+        System.out.println(URL);
         final ProgressDialog loading = ProgressDialog.show(Daftar.this, "Loading...", " Mohon Tunggu...", false, false);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Server.URL + "web_service/daftar.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -242,7 +328,6 @@ public class Daftar extends AppCompatActivity implements   View.OnClickListener{
                 //membuat parameters
                 Map<String, String> params = new HashMap<String, String>();
 
-
                 params.put("nama", nama.getText().toString().trim());
                 params.put("alamat", alamat.getText().toString().trim());
                 params.put("username", username.getText().toString().trim());
@@ -250,6 +335,8 @@ public class Daftar extends AppCompatActivity implements   View.OnClickListener{
                 params.put("telepon", telp.getText().toString().trim());
                 params.put("namafoto", namaimage.getText().toString());
                 params.put("foto", getStringImage(bitmap));
+                params.put("idrole", idRole);
+                params.put("nip", nip.getText().toString());
 
                 return params;
             }

@@ -113,6 +113,9 @@ public class DetailTransaksi extends AppCompatActivity implements  GoogleApiClie
     String ambillat,ambillong;
     private Object LatLng;
 
+    TextView nama, jk, tempat_lahir, tgl_lahir, telp, pekerjaan, kewarganegaraan, agama, pendidikan, alamat_domisili,
+    waktu_kejadian, tempat_kejadian, kelurahan, kecamatan, kabupaten, apa_terjadi, korban, bagaimana_terjadi, dilaporkan;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -144,6 +147,8 @@ public class DetailTransaksi extends AppCompatActivity implements  GoogleApiClie
         imageView2 =  findViewById(R.id.imageView2);
         terima=findViewById(R.id.terima);
         petunjuk=findViewById(R.id.petunjuk);
+
+        init();
 
 
 
@@ -179,6 +184,7 @@ public class DetailTransaksi extends AppCompatActivity implements  GoogleApiClie
         }
 
 
+
         if (sidlevel=="3"||sidlevel.equals("3")){
             terima.setVisibility(View.VISIBLE);
             terima.setOnClickListener(new View.OnClickListener() {
@@ -201,7 +207,29 @@ public class DetailTransaksi extends AppCompatActivity implements  GoogleApiClie
 
     }
 
+    private void init() {
 
+        nama = findViewById(R.id.nama);
+        jk = findViewById(R.id.jk);
+        tempat_lahir = findViewById(R.id.tempat_lahir);
+        tgl_lahir = findViewById(R.id.tanggal_lahir);
+        telp = findViewById(R.id.telp);
+        pekerjaan = findViewById(R.id.pekerjaan);
+        kewarganegaraan = findViewById(R.id.kewarganegaraan);
+        agama = findViewById(R.id.agama);
+        pendidikan = findViewById(R.id.pendidikan);
+        alamat_domisili = findViewById(R.id.alamat_tinggal);
+
+        waktu_kejadian = findViewById(R.id.waktu_kejadian);
+        tempat_kejadian = findViewById(R.id.alamat);
+        kelurahan = findViewById(R.id.kelurahan);
+        kecamatan = findViewById(R.id.kecamatan);
+        kabupaten = findViewById(R.id.kabupaten);
+        apa_terjadi = findViewById(R.id.apa_terjadi);
+        korban = findViewById(R.id.korban);
+        bagaimana_terjadi = findViewById(R.id.bagaimana_terjadi);
+        dilaporkan = findViewById(R.id.dilaporkan);
+    }
 
 
     void getAddress(double lat, double lng) {
@@ -346,8 +374,9 @@ public class DetailTransaksi extends AppCompatActivity implements  GoogleApiClie
         }
     }
     private void ListBarang() {
+         String URL = Server.URL_DEV+"android/detail_kriminal?id="+idtransaksi;
         JsonArrayRequest reqData = new JsonArrayRequest(Request.Method.GET,
-                Server.URL + "web_service/listdetailtransaksi.php?idtransaksi=" + idtransaksi, null,
+                URL, null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -357,18 +386,38 @@ public class DetailTransaksi extends AppCompatActivity implements  GoogleApiClie
                                 JSONObject data = response.getJSONObject(i);
                                 ModelData md = new ModelData();
 
+                                nama.setText(data.getString("nama"));
+                                jk.setText(data.getString("jk"));
+                                tempat_lahir.setText(data.getString("tempat_lahir"));
+                                tgl_lahir.setText(data.getString("tgl_lahir"));
+                                telp.setText(data.getString("telp"));
+                                pekerjaan.setText(data.getString("pekerjaan"));
+                                kewarganegaraan.setText(data.getString("kewarganegaraan"));
+                                agama.setText(data.getString("agama"));
+                                pendidikan.setText(data.getString("pendidikan"));
+                                alamat_domisili.setText(data.getString("alamat_domisili"));
 
-                                catatan.setText(data.getString("catatan"));
+                                waktu_kejadian.setText(data.getString("waktu_kejadian"));
+                                tempat_kejadian.setText(data.getString("tempat_kejadian"));
+                                kelurahan.setText(data.getString("kelurahan"));
+                                kecamatan.setText(data.getString("kecamatan"));
+                                kabupaten.setText(data.getString("kabupaten"));
+                                apa_terjadi.setText(data.getString("apa_terjadi"));
+                                korban.setText(data.getString("korban"));
+                                bagaimana_terjadi.setText(data.getString("bagaimana_terjadi"));
+                                dilaporkan.setText(data.getString("dilaporkan"));
 
-                                total.setText(data.getString("status"));
+//                                total.setText(data.getString("status"));
 
-                                if (data.getString("fotosampah")=="kosong"||data.getString("fotosampah").equals("kosong")){
+                                if (data.getString("foto")=="kosong"||data.getString("foto").equals("kosong")){
                                     Picasso.with(DetailTransaksi.this).load(R.drawable.noimage).into(imageView2);
 
                                 }else{
-                                    Picasso.with(DetailTransaksi.this).load(Server.URL+"assets/fotosampah/"+data.getString("fotosampah")).into(imageView2);
+                                    Picasso.with(DetailTransaksi.this).load(Server.URL_DEV+"upload/"+data.getString("foto")).into(imageView2);
 
                                 }
+
+                                System.out.println(Server.URL_DEV+"upload/"+data.getString("foto"));
 
 //                                alamat.setText(data.getString("alamatpembeli"));
 

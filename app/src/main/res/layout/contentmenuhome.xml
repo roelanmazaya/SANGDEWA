@@ -155,7 +155,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="5dp"
                             android:gravity="center_horizontal"
-                            android:src="@drawable/avatar"
+                            android:src="@mipmap/ic_petugas"
                             app:civ_border_color="#FF000000" />
 
                         <TextView
@@ -169,7 +169,8 @@
                             android:textAlignment="center"
                             android:textColor="@color/colorWhite"
                             android:textSize="17dp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:gravity="center_horizontal" />
 
 
 

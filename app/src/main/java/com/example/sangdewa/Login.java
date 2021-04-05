@@ -65,7 +65,12 @@ public class Login extends AppCompatActivity {
 
     public static final String IDLEVEL = "idlevel";
     public static final String KEY_IDLEVEL = "key_level";
-    private SharedPreferences prefssatu, prefpassword, iduser, idlevel;
+
+    public static final String NAMA = "nama";
+    public static final String KEY_NAMA = "key_nama";
+
+
+    private SharedPreferences prefssatu, prefpassword, iduser, idlevel, nama;
     private ProgressDialog pDialog;
 
     //String usernameambil,passwordambil;
@@ -269,7 +274,9 @@ public class Login extends AppCompatActivity {
     private void Login() {
 
         final ProgressDialog loading = ProgressDialog.show(this, "Signin...", " Mohon Tunggu...", false, false);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Server.URL + "web_service/login.php",
+        String URL = Server.URL_DEV+"android/login";
+//        String URL = Server.URL + "web_service/login.php";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -295,19 +302,26 @@ public class Login extends AppCompatActivity {
                             idlev.putString(Login.KEY_IDLEVEL, jObj.getString("level"));
                             idlev.commit();
 
+                            nama = getSharedPreferences(Login.NAMA,
+                                    Context.MODE_PRIVATE + Context.MODE_PRIVATE
+                                            | Context.MODE_PRIVATE);
+                            SharedPreferences.Editor nama_user = nama.edit();
+                            nama_user.putString(Login.KEY_NAMA, jObj.getString("nama"));
+                            nama_user.commit();
+
 
                             if (success == 1) {
                                 System.out.println("bbbbbbb"+jObj.getString("level"));
 
                                 if (jObj.getString("level").equals("2")||jObj.getString("level")=="2") {
 
-                                    System.out.println("Masyarakat");
+                                    System.out.println("Petugas");
                                     prefManager.setFirstTimeLaunch(false);
                                     Intent i = new Intent(Login.this, Home.class);
                                     startActivity(i);
                                     finish();
                                 } else {
-                                    System.out.println("Petugas");
+                                    System.out.println("Pimpinan");
                                     prefManager.setFirstTimeLaunch(false);
                                     Intent i = new Intent(Login.this, HomePetugas.class);
                                     startActivity(i);

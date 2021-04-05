@@ -60,8 +60,9 @@ public class PetaPetugas extends AppCompatActivity implements OnMapReadyCallback
 
         // Mengarahkan ke tempat-8.174215, 113.716254
 
-        center = new LatLng(-5.4386706, 105.1578069);
-        cameraPosition = new CameraPosition.Builder().target(center).zoom(10).build();
+        center = new LatLng(-7.094789, 108.821540);
+//        center = new LatLng(-5.4386706, 105.1578069);
+        cameraPosition = new CameraPosition.Builder().target(center).zoom(5).build();
         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
         getMarkers();
@@ -85,8 +86,11 @@ public class PetaPetugas extends AppCompatActivity implements OnMapReadyCallback
 
 
     private void getMarkers() {
+        String URL = Server.URL_DEV+"/android/peta";
+//        String URL = Server.URL + "web_service/peta.php";
+        System.out.println(URL);
         JsonArrayRequest reqData = new JsonArrayRequest(Request.Method.GET,
-                Server.URL + "web_service/peta.php"
+                URL
                 , null,
                 new Response.Listener<JSONArray>() {
                     @Override

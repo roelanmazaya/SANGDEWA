@@ -87,6 +87,7 @@
 
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_gravity="center"
                     android:gravity="center"
 
@@ -110,7 +111,6 @@
 
                     <TextView
                         android:textColor="#fff"
-                        android:id="@+id/total"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -221,6 +221,29 @@
                             android:text="   Nama"
                             android:textSize="14sp"
                             android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:text="   Jenis Kelamin"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/jk"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="23dp"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:text="   Jenis Kelamin"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -270,29 +293,6 @@
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins"
-                            android:layout_marginTop="20dp"
-                            android:gravity="center|left"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="20dp"
-                            android:text="   Jenis Kelamin"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:id="@+id/jk"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="23dp"
-                            android:fontFamily="@font/poppins"
-                            android:gravity="center|left"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="20dp"
-                            android:text="   Jenis Kelamin"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -302,31 +302,7 @@
                             android:gravity="center|left"
                             android:paddingLeft="10dp"
                             android:paddingRight="20dp"
-                            android:text="   Alamat"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:id="@+id/almt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="23dp"
-                            android:fontFamily="@font/poppins"
-                            android:gravity="center|left"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="20dp"
-                            android:text="   Alamat"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins"
-                            android:layout_marginTop="20dp"
-                            android:gravity="center|left"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="20dp"
-                            android:text="   Telp/Email"
+                            android:text="   Telp/Fax/Email"
                             android:textSize="12sp" />
 
                         <TextView
@@ -342,6 +318,79 @@
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:text="   Pekerjaan"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/pekerjaan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="23dp"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:text="   Pekerjaan"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:text="   Kewarganegaraan"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/kewarganegaraan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="23dp"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:text="   Kewarganegaraan"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:text="   Agama"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/agama"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="23dp"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:text="   Agama"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -354,7 +403,7 @@
                             android:textSize="12sp" />
 
                         <TextView
-                            android:id="@+id/pend"
+                            android:id="@+id/pendidikan"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="23dp"
@@ -374,11 +423,11 @@
                             android:gravity="center|left"
                             android:paddingLeft="10dp"
                             android:paddingRight="20dp"
-                            android:text="   Kewarganegaraan"
+                            android:text="   Alamat"
                             android:textSize="12sp" />
 
                         <TextView
-                            android:id="@+id/Kewarganegaraan"
+                            android:id="@+id/alamat_tinggal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="23dp"
@@ -386,9 +435,14 @@
                             android:gravity="center|left"
                             android:paddingLeft="10dp"
                             android:paddingRight="20dp"
-                            android:text="   Kewarganegaraan"
+                            android:text="   Alamat"
                             android:textSize="14sp"
                             android:textStyle="bold" />
+
+
+
+
+
 
                         <TextView
                             android:layout_width="match_parent"
@@ -402,7 +456,7 @@
                             android:textSize="12sp" />
 
                         <TextView
-                            android:id="@+id/waktu"
+                            android:id="@+id/waktu_kejadian"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="23dp"
@@ -423,7 +477,7 @@
                             android:gravity="center|left"
                             android:paddingLeft="10dp"
                             android:paddingRight="20dp"
-                            android:text="   Alamat Kejadian"
+                            android:text="   Tempat Kejadian"
                             android:textSize="12sp" />
 
                         <TextView
@@ -435,7 +489,79 @@
                             android:gravity="center|left"
                             android:paddingLeft="10dp"
                             android:paddingRight="20dp"
-                            android:text="   Alamat Kejadian"
+                            android:text="   Tempat Kejadian"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:text="   Kelurahan/Desa"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/kelurahan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="23dp"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:text="   Kelurahan"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:text="   Kecamatan"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/kecamatan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="23dp"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:text="   Kecamatan"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:text="   Kabupaten"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/kabupaten"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="23dp"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:text="   Kabupaten"
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
@@ -512,6 +638,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/bagaimana_terjadi"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="20dp"

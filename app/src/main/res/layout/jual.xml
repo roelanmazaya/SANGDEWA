@@ -275,6 +275,7 @@
                                     android:clickable="true"
                                     android:layout_width="35dp"
                                     android:layout_height="35dp"
+                                    android:onClick="setDate"
                                     android:background="@mipmap/ic_tanggal"
                                     />
 
@@ -541,10 +542,48 @@
                             android:gravity="center|left"
                             android:paddingLeft="10dp"
                             android:paddingRight="20dp"
+                            android:text="   Kecamatan"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:visibility="gone"
+                            android:id="@+id/kecamatan"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="23dp"
+                            android:layout_marginRight="23dp"
+                            android:background="@drawable/rectangle"
+                            android:fontFamily="@font/poppins"
+                            android:gravity="center|left"
+                            android:hint=""
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                        <Spinner
+                            android:id="@+id/sp_kecamatan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
+                            android:textSize="14sp"
+                            android:textStyle="bold"></Spinner>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center|left"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="20dp"
                             android:text="   Kelurahan/Desa"
                             android:textSize="12sp" />
 
                         <EditText
+                            android:visibility="gone"
                             android:id="@+id/kelurahan"
                             android:layout_width="match_parent"
                             android:layout_height="35dp"
@@ -559,31 +598,15 @@
                             android:textSize="11sp"
                             android:textStyle="bold" />
 
-                        <TextView
+                        <Spinner
+                            android:id="@+id/sp_kelurahan"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins"
-                            android:layout_marginTop="20dp"
                             android:gravity="center|left"
                             android:paddingLeft="10dp"
                             android:paddingRight="20dp"
-                            android:text="   Kecamatan"
-                            android:textSize="12sp" />
-
-                        <EditText
-                            android:id="@+id/kecamatan"
-                            android:layout_width="match_parent"
-                            android:layout_height="35dp"
-                            android:layout_marginLeft="23dp"
-                            android:layout_marginRight="23dp"
-                            android:background="@drawable/rectangle"
-                            android:fontFamily="@font/poppins"
-                            android:gravity="center|left"
-                            android:hint=""
-                            android:paddingLeft="10dp"
-                            android:paddingRight="20dp"
-                            android:textSize="11sp"
-                            android:textStyle="bold" />
+                            android:textSize="14sp"
+                            android:textStyle="bold"></Spinner>
 
                         <TextView
                             android:layout_width="match_parent"
@@ -606,6 +629,7 @@
                             android:fontFamily="@font/poppins"
                             android:gravity="center|left"
                             android:hint=""
+                            android:text="Pesawaran"
                             android:paddingLeft="10dp"
                             android:paddingRight="20dp"
                             android:textSize="11sp"
@@ -702,7 +726,7 @@
 
 
                         <EditText
-                            android:id="@+id/catatan"
+                            android:id="@+id/bagaimana_terjadi"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:layout_marginLeft="23dp"

@@ -108,9 +108,10 @@ public class Profil extends AppCompatActivity implements View.OnClickListener {
     }
 
     void CekProfil(){
-
+        String URL = Server.URL_DEV+"android/cekprofil?iduser="+ambiliduser;
+//        String URL = Server.URL + "web_service/cekprofil.php?iduser="+ambiliduser;
         JsonArrayRequest reqData = new JsonArrayRequest(Request.Method.GET,
-                Server.URL + "web_service/cekprofil.php?iduser="+ambiliduser, null,
+                URL, null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -227,8 +228,11 @@ public class Profil extends AppCompatActivity implements View.OnClickListener {
 
     private void Simpan() {
         //menampilkan progress dialog
+        String URL = Server.URL_DEV+"android/update";
+//        String URL = Server.URL + "web_service/update.php";
+
         final ProgressDialog loading = ProgressDialog.show(Profil.this, "Loading...", " Mohon Tunggu...", false, false);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Server.URL + "web_service/update.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

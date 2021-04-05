@@ -351,8 +351,11 @@ public class HomePetugas extends AppCompatActivity implements NavigationView.OnN
 
 
     private void Profil() {
+        final String URL = Server.URL_DEV+"android/profil?iduser="+ambiliduser;
+//        String URL = Server.URL + "web_service/profil.php?iduser="+ambiliduser;
+        System.out.println(URL);
         JsonArrayRequest reqData = new JsonArrayRequest(Request.Method.GET,
-                Server.URL + "web_service/profil.php?iduser=" + ambiliduser
+                URL
                 , null,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -370,7 +373,7 @@ public class HomePetugas extends AppCompatActivity implements NavigationView.OnN
                                 if (data.getString("Foto")=="kosong"||data.getString("Foto").equals("kosong")){
                                     Picasso.with(HomePetugas.this).load(R.drawable.profile01).into(foto);
                                 }else{
-                                    Picasso.with(HomePetugas.this).load(Server.URL+"assets/foto/"+data.getString("Foto")).into(foto);
+                                    Picasso.with(HomePetugas.this).load(Server.URL_DEV+"assets/foto/"+data.getString("Foto")).into(foto);
                                 }
 
 
@@ -813,8 +816,10 @@ public class HomePetugas extends AppCompatActivity implements NavigationView.OnN
 
 
     private void SimpanLokasi() {
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Server.URL + "web_service/simpanlokasi.php",
+        String URL = Server.URL_DEV+"android/simpanlokasi";
+//        String URL = Server.URL + "web_service/simpanlokasi.php";
+        System.out.println(URL);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

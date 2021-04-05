@@ -59,6 +59,7 @@ import com.example.sangdewa.listpetugas.ListPetugas;
 import com.example.sangdewa.notif.Notif;
 import com.example.sangdewa.petugas.PetaPetugas;
 import com.example.sangdewa.profil.Profil;
+import com.example.sangdewa.simpankepetugas.SimpanKePetugas;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
@@ -99,7 +100,6 @@ import co.mobiwise.materialintro.view.MaterialIntroView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static co.mobiwise.materialintro.shape.Focus.MINIMUM;
-
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
         GoogleApiClient.ConnectionCallbacks,
@@ -280,8 +280,12 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent form_kriminal = new Intent(Home.this, SimpanKePetugas.class);
+                form_kriminal.putExtra("update", 1);
+                form_kriminal.putExtra("idpetugas", ambiliduser);
+//                startActivity(new Intent(Home.this, ListPetugas.class));
+                startActivity(form_kriminal);
 
-                startActivity(new Intent(Home.this, ListPetugas.class));
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
             }
@@ -356,9 +360,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
     private void Profil() {
-        System.out.println(Server.URL + "web_service/profil.php?iduser="+ambiliduser);
+        final String URL = Server.URL_DEV+"android/profil?iduser="+ambiliduser;
+//        String URL = Server.URL + "web_service/profil.php?iduser="+ambiliduser;
+        System.out.println(URL);
         JsonArrayRequest reqData = new JsonArrayRequest(Request.Method.GET,
-                Server.URL + "web_service/profil.php?iduser="+ambiliduser
+                URL
                 , null,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -369,9 +375,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                                 JSONObject data = response.getJSONObject(i);
                                 nama.setText(data.getString("nama"));
                                 if (data.getString("Foto")=="kosong"||data.getString("Foto").equals("kosong")){
-                                    Picasso.with(Home.this).load(R.drawable.profile01).into(foto);
+                                    Picasso.with(Home.this).load(R.mipmap.ic_petugas).into(foto);
                                 }else{
-                                    Picasso.with(Home.this).load(Server.URL+"assets/foto/"+data.getString("Foto")).into(foto);
+                                    System.out.println(Server.URL_DEV+"assets/foto/"+data.getString("Foto"));
+                                    Picasso.with(Home.this).load(Server.URL_DEV+"assets/foto/"+data.getString("Foto")).into(foto);
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -811,8 +818,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
 
     private void SimpanLokasi() {
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Server.URL + "web_service/simpanlokasi.php",
+        String URL = Server.URL_DEV+"android/simpanlokasi";
+//        String URL = Server.URL + "web_service/simpanlokasi.php";
+        System.out.println(URL);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
