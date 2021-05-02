@@ -117,7 +117,8 @@ public class Histori extends AppCompatActivity {
                                 md.setIdtransaksi(data.getString("id"));
                                 md.setNama(data.getString("nama"));
                                 md.setTanggal(data.getString("tanggal"));
-                                md.setStatus(data.getString("alamat"));
+                                md.setStatus(data.getString("status"));
+                                md.setPhone(data.getString("telp"));
 
                                 mItems.add(md);
 
@@ -171,7 +172,8 @@ public class Histori extends AppCompatActivity {
                                 md.setIdtransaksi(data.getString("id"));
                                 md.setNama(data.getString("nama"));
                                 md.setTanggal(data.getString("tanggal"));
-                                md.setStatus(data.getString("alamat"));
+                                md.setStatus(data.getString("status"));
+                                md.setPhone(data.getString("telp"));
 
                                 mItems.add(md);
 
@@ -215,6 +217,20 @@ public class Histori extends AppCompatActivity {
     public void onPause() {
         mShimmerViewContainer.stopShimmerAnimation();
         super.onPause();
+    }
+
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        if (sidlevel.equals("2")||sidlevel=="2") {
+            Histori();
+
+        } else {
+            Histori2();
+        }
+//        Toast.makeText(this, "jalan", Toast.LENGTH_SHORT).show();
+        //When BACK BUTTON is pressed, the activity on the stack is restarted
+        //Do what you want on the refresh procedure here
     }
 
 }

@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -43,6 +44,7 @@ import com.example.sangdewa.adapter.AdapterDetail;
 import com.example.sangdewa.config.AppControler;
 import com.example.sangdewa.config.ModelData;
 import com.example.sangdewa.config.Server;
+import com.example.sangdewa.histori.Histori;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -50,6 +52,7 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -114,7 +117,9 @@ public class DetailTransaksi extends AppCompatActivity implements  GoogleApiClie
     private Object LatLng;
 
     TextView nama, jk, tempat_lahir, tgl_lahir, telp, pekerjaan, kewarganegaraan, agama, pendidikan, alamat_domisili,
-    waktu_kejadian, tempat_kejadian, kelurahan, kecamatan, kabupaten, apa_terjadi, korban, bagaimana_terjadi, dilaporkan;
+    waktu_kejadian, tempat_kejadian, kelurahan, kecamatan, kabupaten, apa_terjadi, korban, bagaimana_terjadi, dilaporkan, terlapor, status;
+    LinearLayout LStatus;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -227,8 +232,13 @@ public class DetailTransaksi extends AppCompatActivity implements  GoogleApiClie
         kabupaten = findViewById(R.id.kabupaten);
         apa_terjadi = findViewById(R.id.apa_terjadi);
         korban = findViewById(R.id.korban);
+        terlapor = findViewById(R.id.terlapor);
         bagaimana_terjadi = findViewById(R.id.bagaimana_terjadi);
         dilaporkan = findViewById(R.id.dilaporkan);
+
+        status = findViewById(R.id.status);
+        LStatus = findViewById(R.id.LStatus);
+
     }
 
 
@@ -404,17 +414,25 @@ public class DetailTransaksi extends AppCompatActivity implements  GoogleApiClie
                                 kabupaten.setText(data.getString("kabupaten"));
                                 apa_terjadi.setText(data.getString("apa_terjadi"));
                                 korban.setText(data.getString("korban"));
-                                bagaimana_terjadi.setText(data.getString("bagaimana_terjadi"));
+//                                bagaimana_terjadi.setText(data.getString("bagaimana_terjadi"));
+                                terlapor.setText(data.getString("terlapor"));
+                                catatan.setText(data.getString("bagaimana_terjadi"));
                                 dilaporkan.setText(data.getString("dilaporkan"));
+                                if(data.getString("status").equalsIgnoreCase("0")){
+                                    status.setText("Sedang Diproses");
+                                    LStatus.setBackgroundColor(Color.parseColor("#FBBD00"));
+                                }else{
+                                    status.setText("Selesai");
+                                    LStatus.setBackgroundColor(Color.parseColor("#4CAF50"));
+                                    terima.setVisibility(View.GONE);
+                                }
 
 //                                total.setText(data.getString("status"));
 
                                 if (data.getString("foto")=="kosong"||data.getString("foto").equals("kosong")){
                                     Picasso.with(DetailTransaksi.this).load(R.drawable.noimage).into(imageView2);
-
                                 }else{
                                     Picasso.with(DetailTransaksi.this).load(Server.URL_DEV+"upload/"+data.getString("foto")).into(imageView2);
-
                                 }
 
                                 System.out.println(Server.URL_DEV+"upload/"+data.getString("foto"));
@@ -459,9 +477,11 @@ public class DetailTransaksi extends AppCompatActivity implements  GoogleApiClie
 
 
     private void Terima() {
-
-        final ProgressDialog loading = ProgressDialog.show(this, "Angkut Sampah...", " Mohon Tunggu...", false, false);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Server.URL + "web_service/terima.php",
+        String URL_DEV = Server.URL_DEV+"android/terima";
+//        String URL_DEV = Server.URL + "web_service/terima.php";
+        System.out.println(URL_DEV);
+        final ProgressDialog loading = ProgressDialog.show(this, "Update Status Data !", " Mohon Tunggu...", false, false);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DEV,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -476,7 +496,10 @@ public class DetailTransaksi extends AppCompatActivity implements  GoogleApiClie
                             if (success == 1) {
 
 
-                                finish();
+                                //finish();
+//                                startActivity(new Intent(DetailTransaksi.this, Histori.class));
+//                                finish();
+                                ListBarang();
                                 Toast.makeText(DetailTransaksi.this, jObj.getString("message"), Toast.LENGTH_LONG).show();
 
 
@@ -507,7 +530,7 @@ public class DetailTransaksi extends AppCompatActivity implements  GoogleApiClie
             protected Map<String, String> getParams() {
                 //membuat parameters
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("idtransaksi", idtransaksi.trim());
+                params.put("id", idtransaksi.trim());
 
 
                 return params;

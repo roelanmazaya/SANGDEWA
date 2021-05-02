@@ -42,8 +42,15 @@ public class AdapterHistori extends RecyclerView.Adapter<AdapterHistori.HolderDa
     public void onBindViewHolder(AdapterHistori.HolderData holder, int position) {
         ModelData md = mItems.get(position);
         holder.nama.setText(md.getNama());
-        holder.status.setText(md.getStatus());
+        if(md.getStatus().equalsIgnoreCase("0")){
+            holder.status.setBackground(context.getResources().getDrawable(R.drawable.badge_warning));
+            holder.status.setText("Sedang Diproses");
+        }else{
+            holder.status.setBackground(context.getResources().getDrawable(R.drawable.badge_success));
+            holder.status.setText("Selesai");
+        }
         holder.tanggal.setText(md.getTanggal());
+        holder.telp.setText(md.getPhone());
         holder.md = md;
 
 
@@ -54,7 +61,7 @@ public class AdapterHistori extends RecyclerView.Adapter<AdapterHistori.HolderDa
         return mItems.size();
     }
     class HolderData extends RecyclerView.ViewHolder {
-        TextView nama,tanggal,status;
+        TextView nama,tanggal,status,telp;
         ModelData md;
 
         CardView klik;
@@ -65,6 +72,7 @@ public class AdapterHistori extends RecyclerView.Adapter<AdapterHistori.HolderDa
 
             nama=view.findViewById(R.id.nama);
             status=view.findViewById(R.id.status);
+            telp=view.findViewById(R.id.telp);
             tanggal=view.findViewById(R.id.tanggal);
             klik= view.findViewById(R.id.klik);
 
